@@ -4,7 +4,7 @@ import { InjectModel } from '@nestjs/mongoose';
 import { Model } from "mongoose";
 
 // Models
-import { Covid } from '../covid/interface/covid.interface';
+import { Covid } from './../interfaces/covid.interface';
 
 // Dto
 import { ReportDto } from './dto/report-dto';

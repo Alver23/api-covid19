@@ -9,7 +9,7 @@ import { ReportController } from './report.controller';
 import { ReportService } from './report.service';
 
 // Schemas
-import { CovidSchema } from '../covid/schemas/covid';
+import { CovidSchema } from '../schemas/covid';
 
 @Module({
   imports: [
