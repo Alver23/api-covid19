@@ -8,12 +8,17 @@ import { Covid } from './../interfaces/covid.interface';
 
 // Dto
 import { ReportDto } from './dto/report-dto';
+import { CovidService } from '../lib/gov/covid.service';
 
 @Injectable()
 export class ReportService {
 
   private aggregate: any[] = [];
-  constructor(@InjectModel('Covid') private covidModel: Model<Covid>) {
+
+  constructor(
+    @InjectModel('Covid') private covidModel: Model<Covid>,
+    private readonly covidService: CovidService,
+  ) {
   }
 
   private set Aggregate(params: any) {
@@ -66,5 +71,18 @@ export class ReportService {
           }
         }
       ]);
+  }
+
+  buildReport(queryString: any) {
+    let query = '';
+    if (queryString) {
+      query += '?';
+      Object.entries(queryString)
+        .forEach(([key, value]) => {
+          query += `${key}=${value}&`;
+      });
+    }
+    return this.covidService
+      .search(query);
   }
 }

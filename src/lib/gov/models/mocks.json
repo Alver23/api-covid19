@@ -1,0 +1,36 @@
+{
+  "request": {
+    "id_de_caso": "1",
+    "fecha_de_notificaci_n": "2020-03-02T00:00:00.000",
+    "codigo_divipola": "11001",
+    "ciudad_de_ubicaci_n": "Bogotá D.C.",
+    "departamento": "Bogotá D.C.",
+    "atenci_n": "Recuperado",
+    "edad": "19",
+    "sexo": "F",
+    "tipo": "Importado",
+    "estado": "Leve",
+    "pa_s_de_procedencia": "ITALIA",
+    "fis": "2020-02-27T00:00:00.000",
+    "fecha_de_muerte": "-   -",
+    "fecha_diagnostico": "2020-03-06T00:00:00.000",
+    "fecha_recuperado": "2020-03-13T00:00:00.000",
+    "fecha_reporte_web": "2020-03-06T00:00:00.000"
+  },
+  "response": {
+    "dateNotification": "2020-03-02T00:00:00.000",
+    "city": "Bogotá D.C.",
+    "state": "Bogotá D.C.",
+    "attention": "Recuperado",
+    "age": "19",
+    "gender": "Femenino",
+    "type": "Importado",
+    "statePerson": "Leve",
+    "originCountry": "ITALIA",
+    "fis": "2020-02-27T00:00:00.000",
+    "deathDate": "-   -" ,
+    "recoveredDate": "2020-03-13T00:00:00.000",
+    "dateReport": "2020-03-06T00:00:00.000",
+    "dateDiagnostic": "2020-03-06T00:00:00.000"
+  }
+}
