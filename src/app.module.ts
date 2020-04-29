@@ -11,6 +11,8 @@ import { ReportModule } from './report/report.module';
 
 // Config
 import config from './config/configuration';
+import { APP_INTERCEPTOR } from '@nestjs/core';
+import { SentryInterceptor } from './commons/sentry-interceptor';
 
 @Module({
   imports: [
@@ -25,6 +27,12 @@ import config from './config/configuration';
     ReportModule,
   ],
   controllers: [AppController],
-  providers: [AppService],
+  providers: [
+    AppService,
+    {
+      provide: APP_INTERCEPTOR,
+      useClass: SentryInterceptor,
+    },
+  ],
 })
 export class AppModule {}

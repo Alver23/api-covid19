@@ -3,10 +3,11 @@
   "name": "api-covid19",
   "env": {
     "NODE_ENV": "production",
-    "APP_PORT": 3000,
+    "APP_PORT": "3000",
     "APP_GOV_BASE_URL": "https://www.datos.gov.co/",
     "APP_GOV_PATH": "resource/gt2j-8ykr.json",
-    "APP_GOV_TOKEN": "@app-gov-token"
+    "APP_GOV_TOKEN": "@app-gov-token",
+    "SENTRY_DNS": "@covid_sentry_dns"
   },
   "builds": [
     {

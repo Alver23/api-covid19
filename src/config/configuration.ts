@@ -7,4 +7,5 @@ export default () => ({
   },
   APP_HTTP_TIMEOUT: process.env.APP_HTTP_TIMEOUT,
   APP_HTTP_MAX_REDIRECTS: process.env.APP_HTTP_MAX_REDIRECTS,
+  SENTRY_DNS: process.env.SENTRY_DNS,
 });
