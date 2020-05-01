@@ -17,9 +17,22 @@ export namespace GovNamespace {
     fecha_recuperado: Date;
     fecha_reporte_web: Date;
   }
+
+  export enum ATTENTION_TYPES {
+    HOME = 'Casa',
+    RECOVERED = 'Recuperado',
+    DEATHS = 'Fallecido',
+    HOSPITAL = 'Hospital',
+    HOSPITAL_UCI = 'Hospital UCI',
+  }
+
+  export enum FIELD_TYPES {
+    CITY = 'ciudad_de_ubicaci_n',
+    STATE = 'departamento',
+  }
 }
 
-export namespace CovidNamespace {
+export namespace GovResponseNamespace {
   export interface IDataResponse {
     city: string;
     state: string;

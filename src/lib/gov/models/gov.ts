@@ -2,7 +2,7 @@ import { GovNamespace } from '../../gov.interface';
 
 import IGovResponse = GovNamespace.IDataResponse;
 
-export class Covid {
+export class Gov {
   city: string;
   state: string;
   attention: string;

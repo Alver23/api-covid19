@@ -3,15 +3,15 @@ import { Observable, of } from 'rxjs';
 import { ConfigService } from '@nestjs/config';
 import { HttpService, Injectable } from '@nestjs/common';
 import { map } from 'rxjs/operators';
-import { Covid } from './models/covid';
+import { Gov } from './models/gov';
 import { AxiosResponse } from 'axios';
 
-import { GovNamespace, CovidNamespace } from '../gov.interface';
+import { GovNamespace, GovResponseNamespace } from '../gov.interface';
 import IDataResponse = GovNamespace.IDataResponse;
-import IResponse = CovidNamespace.IDataResponse;
+import IResponse = GovResponseNamespace.IDataResponse;
 
 @Injectable()
-export class CovidService {
+export class GovService {
   private url: string;
   private headers: any;
   constructor(
@@ -32,15 +32,15 @@ export class CovidService {
       .pipe(
         map((response: AxiosResponse<IDataResponse[]>) => response.data),
         map((items: IDataResponse[]) => items
-          .map(item => ({...new Covid(item)}))),
+          .map(item => ({...new Gov(item)}))),
       )
   }
 
   search(query: string) {
-    const url = `${this.url}${query}`;
+    const url = `${this.url}?${query}`;
     return this.httpService.get(url, { headers: {...this.headers } })
       .pipe(
-        map((response: AxiosResponse<IDataResponse[]>) => response.data),
+        map((response) => response.data),
       );
   }
 }
