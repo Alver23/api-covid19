@@ -8,7 +8,7 @@ import { Covid } from './../interfaces/covid.interface';
 
 // Dto
 import { ReportDto } from './dto/report-dto';
-import { CovidService } from '../lib/gov/covid.service';
+import { GovService } from '../lib/gov/gov.service';
 
 @Injectable()
 export class ReportService {
@@ -17,7 +17,7 @@ export class ReportService {
 
   constructor(
     @InjectModel('Covid') private covidModel: Model<Covid>,
-    private readonly covidService: CovidService,
+    private readonly covidService: GovService,
   ) {
   }
 

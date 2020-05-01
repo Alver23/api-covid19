@@ -12,7 +12,7 @@ import { ReportService } from './report.service';
 import { CovidSchema } from '../schemas/covid';
 
 import { GovModule } from '../lib/gov/gov.module';
-import { CovidService } from '../lib/gov/covid.service';
+import { GovService } from '../lib/gov/gov.service';
 
 @Module({
   imports: [
@@ -20,6 +20,6 @@ import { CovidService } from '../lib/gov/covid.service';
     GovModule,
   ],
   controllers: [ReportController],
-  providers: [ReportService, CovidService],
+  providers: [ReportService, GovService],
 })
 export class ReportModule {}

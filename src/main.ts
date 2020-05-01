@@ -5,7 +5,7 @@ import { AppModule } from './app.module';
 
 import * as Sentry from '@sentry/node';
 import configuration from './config/configuration';
-import { SentryInterceptor } from './commons/sentry-interceptor';
+import { SentryInterceptor } from './core/interceptors/sentry/sentry-interceptor';
 
 async function bootstrap() {
   const api = await NestFactory.create(AppModule, {  logger: ['error', 'warn'], });

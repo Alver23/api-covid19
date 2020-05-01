@@ -12,7 +12,8 @@ import { ReportModule } from './report/report.module';
 // Config
 import config from './config/configuration';
 import { APP_INTERCEPTOR } from '@nestjs/core';
-import { SentryInterceptor } from './commons/sentry-interceptor';
+import { SentryInterceptor } from './core/interceptors/sentry/sentry-interceptor';
+import { CovidModule } from './api/covid/covid.module';
 
 @Module({
   imports: [
@@ -25,6 +26,7 @@ import { SentryInterceptor } from './commons/sentry-interceptor';
       isGlobal: true,
     }),
     ReportModule,
+    CovidModule,
   ],
   controllers: [AppController],
   providers: [

@@ -3,7 +3,7 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
 import { Module, HttpModule } from '@nestjs/common';
 
 // Services
-import { CovidService } from './covid.service';
+import { GovService } from './gov.service';
 
 @Module({
   imports: [
@@ -12,7 +12,7 @@ import { CovidService } from './covid.service';
       maxRedirects: 5,
     }),
   ],
-  providers: [CovidService],
+  providers: [GovService],
   exports:[HttpModule]
 })
 export class GovModule {}
