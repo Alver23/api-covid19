@@ -5,15 +5,10 @@ cache:
   directories:
     - "node_modules"
 jobs:
-  - stage: e2e
-    - script: npm run test:e2e
-  - stage: release
-    - script: npm run release
-    - branches:
-      only:
-        - master
-  - stage:
-    - script: git push origin master --tags
-    - branches:
-      only:
-        - master
+  include:
+    - stage: lint
+      script: "npm run lint"
+    - stage: test
+      script: "npm run test"
+    - stage: e2e
+      script: "npm run test:e2e"
