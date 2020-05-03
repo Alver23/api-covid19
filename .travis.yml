@@ -4,16 +4,3 @@ node_js:
 cache:
   directories:
     - "node_modules"
-jobs:
-  include:
-    - stage: e2e
-      name: "End to End"
-      script: npm run test:e2e
-    - stage: release
-      name: "release"
-        if: branch = master
-      script: npm run release
-    - stage:
-      name: "close mr"
-        if: branch = master
-      script: git push origin master --tags
