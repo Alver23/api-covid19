@@ -36,7 +36,7 @@ export class GovService {
       )
   }
 
-  search(query: string) {
+  search(query: string): Observable<any> {
     const url = `${this.url}?${query}`;
     return this.httpService.get(url, { headers: {...this.headers } })
       .pipe(

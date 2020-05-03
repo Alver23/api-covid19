@@ -87,8 +87,9 @@ export class CovidService {
         this.getCasesByType(FIELD_TYPES.STATE),
       ).subscribe(([totalCases, casesByCity, casesByState]) => {
         observer.next({ ...totalCases, casesByCity, casesByState });
-        observer.complete();
-      });
+      }, (err) => {
+        observer.error(err);
+      }, () => observer.complete());
     });
   }
 
