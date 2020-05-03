@@ -13,6 +13,6 @@ import { GovService } from './../../lib/gov/gov.service';
 @Module({
   imports: [GovModule],
   controllers: [CovidController],
-  providers: [CovidService, GovService]
+  providers: [CovidService, GovService],
 })
 export class CovidModule {}

@@ -1,5 +1,4 @@
 export namespace CovidResponseNamespace {
-
   export interface Items {
     total: number;
     name: string;

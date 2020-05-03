@@ -21,10 +21,10 @@ describe('CovidService', () => {
   let service: CovidService;
   let govService: GovService;
 
-  const spyFunction = (data) => {
+  const spyFunction = data => {
     const spy = jest.spyOn(govService, 'search').mockReturnValue(of(data));
     return spy;
-  }
+  };
 
   const expectNameAndTotal = () => ({
     name: expect.any(String),
@@ -35,10 +35,7 @@ describe('CovidService', () => {
 
   beforeEach(async () => {
     const moduleRef: TestingModule = await Test.createTestingModule({
-      providers: [
-        CovidService,
-        { provide: GovService, useClass: GovServiceMock },
-      ],
+      providers: [CovidService, { provide: GovService, useClass: GovServiceMock }],
     }).compile();
 
     service = moduleRef.get<CovidService>(CovidService);
@@ -50,182 +47,160 @@ describe('CovidService', () => {
   });
 
   describe('getTotalCases method', () => {
-    it('should get the total cases of the covid 19', (done) => {
+    it('should get the total cases of the covid 19', done => {
       const spy = spyFunction(totalCases);
-      service
-        .getTotalCases()
-        .subscribe((response) => {
-          expect(spy).toBeCalledTimes(1);
-          expect(response).toEqual(expect.any(Number))
-          done();
-        })
+      service.getTotalCases().subscribe(response => {
+        expect(spy).toBeCalledTimes(1);
+        expect(response).toEqual(expect.any(Number));
+        done();
+      });
     });
   });
 
   describe('getCasesByType method', () => {
-    it('should get the cases by type', (done) => {
+    it('should get the cases by type', done => {
       const spy = spyFunction(cases);
-      service
-        .getCasesByType(FIELD_TYPES.CITY)
-        .subscribe(response => {
-          expect(spy).toBeCalledTimes(1);
-          expect(response)
-            .toEqual(
-              expect.arrayContaining([
-                expect.objectContaining(expectNameAndTotal())
-              ]),
-            );
-          done();
-        })
+      service.getCasesByType(FIELD_TYPES.CITY).subscribe(response => {
+        expect(spy).toBeCalledTimes(1);
+        expect(response).toEqual(expect.arrayContaining([expect.objectContaining(expectNameAndTotal())]));
+        done();
+      });
     });
   });
 
   describe('getTotalCasesByAttention method', () => {
-    it('should get the total cases by type of attention', (done) => {
+    it('should get the total cases by type of attention', done => {
       const spy = spyFunction(totalCases);
-      service
-        .getTotalCasesByAttention('')
-        .subscribe(response => {
-          expect(spy).toBeCalledTimes(1);
-          expect(response)
-            .toEqual(expect.any(Number));
-          done();
-        })
+      service.getTotalCasesByAttention('').subscribe(response => {
+        expect(spy).toBeCalledTimes(1);
+        expect(response).toEqual(expect.any(Number));
+        done();
+      });
     });
   });
 
   describe('getCasesByAttention method', () => {
-    it('should get the cases by type of attention', (done) => {
+    it('should get the cases by type of attention', done => {
       const spy = spyFunction(cases);
-      service
-        .getCasesByAttention(FIELD_TYPES.CITY, '')
-        .subscribe(response => {
-          expect(spy).toBeCalledTimes(1);
-          expect(response)
-            .toEqual(
-              expect.arrayContaining([
-                expect.objectContaining(expectNameAndTotal())
-              ]),
-            );
-          done();
-        })
+      service.getCasesByAttention(FIELD_TYPES.CITY, '').subscribe(response => {
+        expect(spy).toBeCalledTimes(1);
+        expect(response).toEqual(expect.arrayContaining([expect.objectContaining(expectNameAndTotal())]));
+        done();
+      });
     });
   });
 
   describe('getCases method', () => {
-    it('should get the cases for cities and state', (done) => {
+    it('should get the cases for cities and state', done => {
       jest.spyOn(service, 'getTotalCases').mockReturnValue(of(totalCases[0].total));
       jest.spyOn(service, 'getCasesByType').mockReturnValue(of(cases));
-      service
-        .getCases()
-        .subscribe(response => {
-          expect(response)
-            .toEqual(
+      service.getCases().subscribe(response => {
+        expect(response).toEqual(
+          expect.objectContaining({
+            total: expect.any(Number),
+            casesByCity: expect.arrayContaining([
               expect.objectContaining({
-                total: expect.any(Number),
-                casesByCity: expect.arrayContaining([
-                  expect.objectContaining({
-                    ...expectNameAndTotal(),
-                  }),
-                ]),
-                casesByState: expect.arrayContaining([
-                  expect.objectContaining({
-                    ...expectNameAndTotal(),
-                  }),
-                ]),
+                ...expectNameAndTotal(),
               }),
-            );
-          done()
-        })
+            ]),
+            casesByState: expect.arrayContaining([
+              expect.objectContaining({
+                ...expectNameAndTotal(),
+              }),
+            ]),
+          }),
+        );
+        done();
+      });
     });
 
-    it('should get an error', (done) => {
+    it('should get an error', done => {
       const errors: Error = new Error('opps');
       jest.spyOn(service, 'getTotalCases').mockReturnValue(throwError(errors));
       jest.spyOn(service, 'getCasesByType').mockReturnValue(throwError(errors));
-      service.getCases()
-        .subscribe(() => {}, (error) => {
+      service.getCases().subscribe(
+        () => {},
+        error => {
           expect(error).toEqual(errors);
           done();
-        });
+        },
+      );
     });
   });
 
   describe('getCasesRecovered method', () => {
-    it('should get the cases recovered', (done) => {
+    it('should get the cases recovered', done => {
       jest.spyOn(service, 'getTotalCasesByAttention').mockReturnValue(of(totalCases[0].total));
       jest.spyOn(service, 'getCasesByAttention').mockReturnValue(of(cases));
-      service
-        .getCasesRecovered()
-        .subscribe(response => {
-          expect(response)
-            .toEqual(
+      service.getCasesRecovered().subscribe(response => {
+        expect(response).toEqual(
+          expect.objectContaining({
+            total: expect.any(Number),
+            casesByCity: expect.arrayContaining([
               expect.objectContaining({
-                total: expect.any(Number),
-                casesByCity: expect.arrayContaining([
-                  expect.objectContaining({
-                    ...expectNameAndTotal(),
-                  }),
-                ]),
-                casesByState: expect.arrayContaining([
-                  expect.objectContaining({
-                    ...expectNameAndTotal(),
-                  }),
-                ]),
+                ...expectNameAndTotal(),
               }),
-            );
-          done()
-        })
+            ]),
+            casesByState: expect.arrayContaining([
+              expect.objectContaining({
+                ...expectNameAndTotal(),
+              }),
+            ]),
+          }),
+        );
+        done();
+      });
     });
 
-    it('should get an error', (done) => {
+    it('should get an error', done => {
       const errors: Error = new Error('opps');
       jest.spyOn(service, 'getTotalCasesByAttention').mockReturnValue(throwError(errors));
       jest.spyOn(service, 'getCasesByAttention').mockReturnValue(throwError(errors));
-      service.getCasesRecovered()
-        .subscribe(() => {}, (error) => {
+      service.getCasesRecovered().subscribe(
+        () => {},
+        error => {
           expect(error).toEqual(errors);
           done();
-        });
+        },
+      );
     });
   });
 
   describe('getCasesDeaths method', () => {
-    it('should get the cases deaths', (done) => {
+    it('should get the cases deaths', done => {
       jest.spyOn(service, 'getTotalCasesByAttention').mockReturnValue(of(totalCases[0].total));
       jest.spyOn(service, 'getCasesByAttention').mockReturnValue(of(cases));
-      service
-        .getCasesDeaths()
-        .subscribe(response => {
-          expect(response)
-            .toEqual(
+      service.getCasesDeaths().subscribe(response => {
+        expect(response).toEqual(
+          expect.objectContaining({
+            total: expect.any(Number),
+            casesByCity: expect.arrayContaining([
               expect.objectContaining({
-                total: expect.any(Number),
-                casesByCity: expect.arrayContaining([
-                  expect.objectContaining({
-                    ...expectNameAndTotal(),
-                  }),
-                ]),
-                casesByState: expect.arrayContaining([
-                  expect.objectContaining({
-                    ...expectNameAndTotal(),
-                  }),
-                ]),
+                ...expectNameAndTotal(),
               }),
-            );
-          done()
-        })
+            ]),
+            casesByState: expect.arrayContaining([
+              expect.objectContaining({
+                ...expectNameAndTotal(),
+              }),
+            ]),
+          }),
+        );
+        done();
+      });
     });
 
-    it('should get an error', (done) => {
+    it('should get an error', done => {
       const errors: Error = new Error('opps');
       jest.spyOn(service, 'getTotalCasesByAttention').mockReturnValue(throwError(errors));
       jest.spyOn(service, 'getCasesByAttention').mockReturnValue(throwError(errors));
-      service.getCasesDeaths()
-        .subscribe(() => {}, (error) => {
+      service.getCasesDeaths().subscribe(
+        () => {},
+        error => {
           expect(error).toEqual(errors);
           done();
-        });
+        },
+      );
     });
   });
 });

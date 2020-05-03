@@ -6,9 +6,7 @@ import { CovidService } from './services/covid.service';
 
 @Controller('cases')
 export class CovidController {
-  constructor(
-    private readonly covidService: CovidService,
-  ) {}
+  constructor(private readonly covidService: CovidService) {}
 
   @Get()
   public async getCases() {

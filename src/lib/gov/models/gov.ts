@@ -42,7 +42,6 @@ export class Gov {
     return {
       F: 'Femenino',
       M: 'Masculino',
-    }[value]
+    }[value];
   }
-
 }

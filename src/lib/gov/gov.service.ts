@@ -8,10 +8,7 @@ import { map } from 'rxjs/operators';
 export class GovService {
   private url: string;
   private headers: any;
-  constructor(
-    private readonly httpService: HttpService,
-    private readonly configService: ConfigService,
-  ) {
+  constructor(private readonly httpService: HttpService, private readonly configService: ConfigService) {
     const gov = this.configService.get('GOV');
     this.url = `${gov.BASE_URL}${gov.PATH}`;
     this.headers = {
@@ -21,9 +18,6 @@ export class GovService {
 
   search(query: string): Observable<any> {
     const url = `${this.url}?${query}`;
-    return this.httpService.get(url, { headers: {...this.headers } })
-      .pipe(
-        map((response) => response.data),
-      );
+    return this.httpService.get(url, { headers: { ...this.headers } }).pipe(map(response => response.data));
   }
 }

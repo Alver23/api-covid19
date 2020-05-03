@@ -8,7 +8,9 @@ import configuration from './config/configuration';
 import { SentryInterceptor } from './core/interceptors/sentry/sentry-interceptor';
 
 async function bootstrap() {
-  const api = await NestFactory.create(AppModule, {  logger: ['error', 'warn'], });
+  const api = await NestFactory.create(AppModule, {
+    logger: ['error', 'warn'],
+  });
   api.use(helmet());
   api.enableCors();
   api.useGlobalInterceptors(new SentryInterceptor());

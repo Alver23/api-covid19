@@ -8,10 +8,6 @@ export class CCovidResponse implements CovidResponse {
   casesByState: Items[];
 
   constructor(values) {
-    ({
-      totalCases: this.total,
-      cities: this.casesByCity,
-      state: this.casesByState,
-    } = values);
+    ({ totalCases: this.total, cities: this.casesByCity, state: this.casesByState } = values);
   }
 }

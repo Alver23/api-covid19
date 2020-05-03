@@ -16,20 +16,15 @@ import { GovServiceMock } from '../src/lib/gov/gov-service-mock';
 describe('AppController (e2e)', () => {
   let app: INestApplication;
   const covidService = {
-    getCases: () => ({ total: 1}),
-    getCasesRecovered: () => ({ total: 1}),
-    getCasesDeaths: () => ({ total: 1}),
+    getCases: () => ({ total: 1 }),
+    getCasesRecovered: () => ({ total: 1 }),
+    getCasesDeaths: () => ({ total: 1 }),
   };
 
   beforeEach(async () => {
     const mdduleRef: TestingModule = await Test.createTestingModule({
-      imports: [
-        CovidModule,
-        GovModule,
-      ],
-      providers: [
-        ConfigService,
-      ]
+      imports: [CovidModule, GovModule],
+      providers: [ConfigService],
     })
       .overrideProvider(CovidService)
       .useValue(covidService)
@@ -38,7 +33,7 @@ describe('AppController (e2e)', () => {
       .compile();
 
     app = mdduleRef.createNestApplication();
-    app.setGlobalPrefix('api')
+    app.setGlobalPrefix('api');
     await app.init();
   });
 
@@ -48,7 +43,7 @@ describe('AppController (e2e)', () => {
         .get('/api/cases')
         .expect(200)
         .expect({
-          total: 1
+          total: 1,
         });
     });
 
@@ -57,7 +52,7 @@ describe('AppController (e2e)', () => {
         .get('/api/cases/recovered')
         .expect(200)
         .expect({
-          total: 1
+          total: 1,
         });
     });
 
@@ -66,7 +61,7 @@ describe('AppController (e2e)', () => {
         .get('/api/cases/deaths')
         .expect(200)
         .expect({
-          total: 1
+          total: 1,
         });
     });
   });

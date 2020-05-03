@@ -13,6 +13,6 @@ import { GovService } from './gov.service';
     }),
   ],
   providers: [GovService],
-  exports:[HttpModule]
+  exports: [HttpModule],
 })
 export class GovModule {}
