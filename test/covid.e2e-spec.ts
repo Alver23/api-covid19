@@ -1,6 +1,6 @@
 // Dependencies
 import { Test, TestingModule } from '@nestjs/testing';
-import { HttpService, INestApplication } from '@nestjs/common';
+import { INestApplication } from '@nestjs/common';
 import * as request from 'supertest';
 
 // Modules

@@ -32,7 +32,7 @@ describe('Covid Controller', () => {
   describe('cases', () => {
     it('should get the cases', () => {
       const spy = jest.spyOn(service, 'getCases').mockReturnValue(mocks as any);
-      return controller.getCases().then(response => {
+      return controller.getCases().then(() => {
         expect(spy).toBeCalledTimes(1);
       });
     });
