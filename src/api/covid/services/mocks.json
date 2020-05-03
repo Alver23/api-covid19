@@ -1,0 +1,7 @@
+{
+  "cases": [
+    { "name": "Cali", "total": 100 },
+    { "name": "Bogota", "total": 10 }
+  ],
+  "totalCases": [{ "total": 100 }]
+}

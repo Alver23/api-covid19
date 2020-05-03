@@ -1,0 +1,11 @@
+{
+  "total": 100,
+  "casesByCity": [
+    { "name": "Cali", "total": 100 },
+    { "name": "Bogota", "total": 10 }
+  ],
+  "casesByState": [
+    { "name": "Cali", "total": 100 },
+    { "name": "Bogota", "total": 10 }
+  ]
+}

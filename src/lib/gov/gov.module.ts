@@ -1,5 +1,5 @@
 // Dependencies
-import { ConfigModule, ConfigService } from '@nestjs/config';
+// import { ConfigModule, ConfigService } from '@nestjs/config';
 import { Module, HttpModule } from '@nestjs/common';
 
 // Services
@@ -13,6 +13,6 @@ import { GovService } from './gov.service';
     }),
   ],
   providers: [GovService],
-  exports:[HttpModule]
+  exports: [HttpModule],
 })
 export class GovModule {}
