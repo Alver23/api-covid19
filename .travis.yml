@@ -6,9 +6,9 @@ cache:
     - "node_modules"
 jobs:
   include:
+    - stage: lint
+      script: "npm run linst"
+    - stage: test
+      script: "npm run test"
     - stage: e2e
       script: "npm run test:e2e"
-    - stage: release
-      script:
-        - "npm run release"
-        - "git push --follow-tags origin HEAD"
