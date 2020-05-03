@@ -12,7 +12,7 @@ import { uriParser } from './utils';
 
 // Models
 import { GovNamespace } from '../../../lib/gov.interface';
-import { CovidResponseNamespace } from './models';
+import { CCovidResponse, CovidResponseNamespace } from './models';
 
 import Items = CovidResponseNamespace.Items;
 import FIELD_TYPES = GovNamespace.FIELD_TYPES;
@@ -25,7 +25,7 @@ export class CovidService {
     private readonly govService: GovService,
   ) {}
 
-  public getTotalCases(): Observable<{ total: number }> {
+  public getTotalCases(): Observable<number> {
     const queryString = uriParser(
       [{ name : '$select', value: 'COUNT(*) as total' }],
     );
@@ -33,7 +33,7 @@ export class CovidService {
     return this.govService
       .search(queryString)
       .pipe(
-        map(data => data[0]),
+        map(data => data[0].total),
       );
   }
 
@@ -61,7 +61,7 @@ export class CovidService {
     return this.govService
       .search(queryString)
       .pipe(
-        map(data => data[0]),
+        map(data => data[0].total),
       );
   }
 
@@ -85,8 +85,8 @@ export class CovidService {
         this.getTotalCases(),
         this.getCasesByType(FIELD_TYPES.CITY),
         this.getCasesByType(FIELD_TYPES.STATE),
-      ).subscribe(([totalCases, casesByCity, casesByState]) => {
-        observer.next({ ...totalCases, casesByCity, casesByState });
+      ).subscribe(([totalCases, cities, state]) => {
+        observer.next({ ...new CCovidResponse({ totalCases, cities, state }) });
       }, (err) => {
         observer.error(err);
       }, () => observer.complete());
@@ -99,8 +99,8 @@ export class CovidService {
         this.getTotalCasesByAttention(`'${ATTENTION_TYPES.RECOVERED}'`),
         this.getCasesByAttention(FIELD_TYPES.CITY, ATTENTION_TYPES.RECOVERED),
         this.getCasesByAttention(FIELD_TYPES.STATE, ATTENTION_TYPES.RECOVERED),
-      ).subscribe(([totalCases, casesByCity, casesByState]) => {
-        observer.next({ ...totalCases, casesByCity, casesByState });
+      ).subscribe(([totalCases, cities, state]) => {
+        observer.next({ ...new CCovidResponse({ totalCases, cities, state }) });
       }, (err) => {
         observer.error(err);
       }, () => observer.complete());
@@ -113,8 +113,8 @@ export class CovidService {
         this.getTotalCasesByAttention(`'${ATTENTION_TYPES.DEATHS}'`),
         this.getCasesByAttention(FIELD_TYPES.CITY, ATTENTION_TYPES.DEATHS),
         this.getCasesByAttention(FIELD_TYPES.STATE, ATTENTION_TYPES.DEATHS),
-      ).subscribe(([totalCases, casesByCity, casesByState]) => {
-        observer.next({ ...totalCases, casesByCity, casesByState });
+      ).subscribe(([totalCases, cities, state]) => {
+        observer.next({ ...new CCovidResponse({ totalCases, cities, state }) });
       }, (err) => {
         observer.error(err);
       }, () => observer.complete());

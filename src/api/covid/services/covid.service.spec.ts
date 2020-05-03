@@ -56,12 +56,7 @@ describe('CovidService', () => {
         .getTotalCases()
         .subscribe((response) => {
           expect(spy).toBeCalledTimes(1);
-          expect(response)
-            .toEqual(
-              expect.objectContaining({
-                total: expect.any(Number),
-              })
-            );
+          expect(response).toEqual(expect.any(Number))
           done();
         })
     });
@@ -77,10 +72,7 @@ describe('CovidService', () => {
           expect(response)
             .toEqual(
               expect.arrayContaining([
-                expect.objectContaining({
-                  name: expect.any(String),
-                  total: expect.any(Number),
-                })
+                expect.objectContaining(expectNameAndTotal())
               ]),
             );
           done();
@@ -96,11 +88,7 @@ describe('CovidService', () => {
         .subscribe(response => {
           expect(spy).toBeCalledTimes(1);
           expect(response)
-            .toEqual(
-              expect.objectContaining({
-                total: expect.any(Number),
-              })
-            );
+            .toEqual(expect.any(Number));
           done();
         })
     });
@@ -116,9 +104,7 @@ describe('CovidService', () => {
           expect(response)
             .toEqual(
               expect.arrayContaining([
-                expect.objectContaining({
-                  ...expectNameAndTotal(),
-                })
+                expect.objectContaining(expectNameAndTotal())
               ]),
             );
           done();
@@ -128,7 +114,7 @@ describe('CovidService', () => {
 
   describe('getCases method', () => {
     it('should get the cases for cities and state', (done) => {
-      jest.spyOn(service, 'getTotalCases').mockReturnValue(of(totalCases[0]));
+      jest.spyOn(service, 'getTotalCases').mockReturnValue(of(totalCases[0].total));
       jest.spyOn(service, 'getCasesByType').mockReturnValue(of(cases));
       service
         .getCases()
@@ -167,7 +153,7 @@ describe('CovidService', () => {
 
   describe('getCasesRecovered method', () => {
     it('should get the cases recovered', (done) => {
-      jest.spyOn(service, 'getTotalCasesByAttention').mockReturnValue(of(totalCases[0]));
+      jest.spyOn(service, 'getTotalCasesByAttention').mockReturnValue(of(totalCases[0].total));
       jest.spyOn(service, 'getCasesByAttention').mockReturnValue(of(cases));
       service
         .getCasesRecovered()
@@ -206,7 +192,7 @@ describe('CovidService', () => {
 
   describe('getCasesDeaths method', () => {
     it('should get the cases deaths', (done) => {
-      jest.spyOn(service, 'getTotalCasesByAttention').mockReturnValue(of(totalCases[0]));
+      jest.spyOn(service, 'getTotalCasesByAttention').mockReturnValue(of(totalCases[0].total));
       jest.spyOn(service, 'getCasesByAttention').mockReturnValue(of(cases));
       service
         .getCasesDeaths()

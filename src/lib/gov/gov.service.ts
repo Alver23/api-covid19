@@ -1,14 +1,8 @@
 // Dependencies
-import { Observable, of } from 'rxjs';
+import { Observable } from 'rxjs';
 import { ConfigService } from '@nestjs/config';
 import { HttpService, Injectable } from '@nestjs/common';
 import { map } from 'rxjs/operators';
-import { Gov } from './models/gov';
-import { AxiosResponse } from 'axios';
-
-import { GovNamespace, GovResponseNamespace } from '../gov.interface';
-import IDataResponse = GovNamespace.IDataResponse;
-import IResponse = GovResponseNamespace.IDataResponse;
 
 @Injectable()
 export class GovService {
@@ -23,17 +17,6 @@ export class GovService {
     this.headers = {
       'X-App-Token': gov.TOKEN,
     };
-  }
-
-  findAll(): Observable<IResponse[]> {
-    const gov = this.configService.get('GOV');
-    const url = `${gov.BASE_URL}${gov.PATH}?$limit=5`;
-    return this.httpService.get(url)
-      .pipe(
-        map((response: AxiosResponse<IDataResponse[]>) => response.data),
-        map((items: IDataResponse[]) => items
-          .map(item => ({...new Gov(item)}))),
-      )
   }
 
   search(query: string): Observable<any> {

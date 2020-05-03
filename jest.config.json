@@ -2,6 +2,16 @@
   "roots": ["<rootDir>/src"],
   "collectCoverage": true,
   "coverageDirectory": "./coverage",
+  "collectCoverageFrom": [
+    "**/*ts",
+    "!**/*-mock.ts",
+    "!**/main.ts",
+    "!**/*.module.ts"
+  ],
+  "coveragePathIgnorePatterns": [
+    "config/",
+    "core/"
+  ],
   "testMatch": ["**/?(*.)+(spec).+(ts)"],
   "globals": {
     "ts-jest": {
