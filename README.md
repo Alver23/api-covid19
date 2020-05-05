@@ -1,5 +1,6 @@
 # Api Covid -19
 [![Build Status](https://travis-ci.com/Alver23/api-covid19.svg?branch=master)](https://travis-ci.com/Alver23/api-covid19)
+[![Coverage Status](https://coveralls.io/repos/github/Alver23/api-covid19/badge.svg?branch=master)](https://coveralls.io/github/Alver23/api-covid19?branch=master)
 
 ## Description
 Api donde puedes obtener los casos de contagio sobre el coronavirus en Colombia
