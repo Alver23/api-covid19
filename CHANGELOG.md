@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.9.0](https://github.com/Alver23/api-covid19/compare/v2.8.0...v2.9.0) (2020-05-06)
+
+
+### Features
+
+* adding badge for coverage ([ac31ea2](https://github.com/Alver23/api-covid19/commit/ac31ea2eac59947a8f00d6dca32e65233f5ad399))
+* adding badge for coverage ([9f2f68f](https://github.com/Alver23/api-covid19/commit/9f2f68f439b1ae03772549bb8e100be5e09839b1))
+* adding badge for coverage ([a20a339](https://github.com/Alver23/api-covid19/commit/a20a33907106dc2bda598fecfd2b573b809e5f25))
+
 ## [2.8.0](https://github.com/Alver23/api-covid19/compare/v2.4.0...v2.8.0) (2020-05-03)
 
 
