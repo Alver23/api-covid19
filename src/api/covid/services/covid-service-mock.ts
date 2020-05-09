@@ -1,5 +1,6 @@
 export class CovidServiceMock {
-  getCases() {}
-  getCasesRecovered() {}
-  getCasesDeaths() {}
+	getCases() {}
+	getCasesRecovered() {}
+	getCasesDeaths() {}
+	getCasesSummary() {}
 }

@@ -1,13 +1,13 @@
 import { CovidResponseNamespace } from './covid-response.interface';
-import Items = CovidResponseNamespace.Items;
+import Item = CovidResponseNamespace.Item;
 import CovidResponse = CovidResponseNamespace.CovidResponse;
 
 export class CCovidResponse implements CovidResponse {
-  total: number;
-  casesByCity: Items[];
-  casesByState: Items[];
+	total: number;
+	casesByCity: Item[];
+	casesByState: Item[];
 
-  constructor(values) {
-    ({ totalCases: this.total, cities: this.casesByCity, state: this.casesByState } = values);
-  }
+	constructor(values) {
+		({ totalCases: this.total, cities: this.casesByCity, state: this.casesByState } = values);
+	}
 }

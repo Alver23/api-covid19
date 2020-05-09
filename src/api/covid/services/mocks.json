@@ -3,5 +3,37 @@
     { "name": "Cali", "total": 100 },
     { "name": "Bogota", "total": 10 }
   ],
-  "totalCases": [{ "total": 100 }]
+  "totalCases": [{ "total": 100 }],
+  "casesSummary": {
+    "items": [
+      {
+        "name": "Masculino",
+        "total": 539
+      },
+      {
+        "name": "Femenino",
+        "total": 468
+      }
+    ],
+    "recoveredItems": [
+      {
+        "name": "Femenino",
+        "total": 139
+      },
+      {
+        "name": "Masculino",
+        "total": 137
+      }
+    ],
+    "deathsItems": [
+      {
+        "name": "Masculino",
+        "total": 38
+      },
+      {
+        "name": "Femenino",
+        "total": 18
+      }
+    ]
+  }
 }
