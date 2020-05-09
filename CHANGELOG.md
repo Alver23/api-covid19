@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.10.0](https://github.com/Alver23/api-covid19/compare/v2.9.0...v2.10.0) (2020-05-09)
+
+
+### Features
+
+* add coverage in the covid service ([85feeea](https://github.com/Alver23/api-covid19/commit/85feeeaee9b6801483ae50889644287e8ef17c77))
+* add summary for detail ([928f9ab](https://github.com/Alver23/api-covid19/commit/928f9ab9616463a6121f33450c0664ca8e7e1226))
+
 ## [2.9.0](https://github.com/Alver23/api-covid19/compare/v2.8.0...v2.9.0) (2020-05-06)
 
 
