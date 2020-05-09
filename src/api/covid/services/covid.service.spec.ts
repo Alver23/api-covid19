@@ -208,6 +208,14 @@ describe('CovidService', () => {
 				done();
 			});
 		});
+		it('should get the cases by type and field when send additional params', done => {
+			const spy = spyFunction(cases);
+			service.getCasesByTypeAndField(FIELD_TYPES.AGE, FIELD_TYPES.CITY, 'cali', 'params').subscribe(response => {
+				expect(spy).toBeCalledTimes(1);
+				expect(response).toEqual(expect.arrayContaining([expect.objectContaining(expectNameAndTotal())]));
+				done();
+			});
+		});
 	});
 
 	describe('getCasesByGender method', () => {
@@ -224,6 +232,18 @@ describe('CovidService', () => {
 				done();
 			});
 		});
+
+		it('should get an error', done => {
+			const errors: Error = new Error('opps');
+			jest.spyOn(service, 'getCasesByTypeAndField').mockReturnValue(throwError(errors));
+			service.getCasesByGender({ field: FIELD_TYPES.CITY, value: 'cali' } as any).subscribe(
+				() => {},
+				error => {
+					expect(error).toEqual(errors);
+					done();
+				},
+			);
+		});
 	});
 
 	describe('getCasesByAge method', () => {
@@ -239,6 +259,18 @@ describe('CovidService', () => {
 				);
 				done();
 			});
+		});
+
+		it('should get an error', done => {
+			const errors: Error = new Error('opps');
+			jest.spyOn(service, 'getCasesByTypeAndField').mockReturnValue(throwError(errors));
+			service.getCasesByAge({ field: FIELD_TYPES.CITY, value: 'cali' } as any).subscribe(
+				() => {},
+				error => {
+					expect(error).toEqual(errors);
+					done();
+				},
+			);
 		});
 	});
 

@@ -13,19 +13,19 @@ import { SentryInterceptor } from './core/interceptors/sentry/sentry-interceptor
 import { CovidModule } from './api/covid/covid.module';
 
 @Module({
-  imports: [
-    ConfigModule.forRoot({
-      load: [config],
-      isGlobal: true,
-    }),
-    CovidModule,
-  ],
-  controllers: [],
-  providers: [
-    {
-      provide: APP_INTERCEPTOR,
-      useClass: SentryInterceptor,
-    },
-  ],
+	imports: [
+		ConfigModule.forRoot({
+			load: [config],
+			isGlobal: true,
+		}),
+		CovidModule,
+	],
+	controllers: [],
+	providers: [
+		{
+			provide: APP_INTERCEPTOR,
+			useClass: SentryInterceptor,
+		},
+	],
 })
 export class AppModule {}

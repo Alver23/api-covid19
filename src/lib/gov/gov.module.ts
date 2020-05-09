@@ -6,13 +6,13 @@ import { Module, HttpModule } from '@nestjs/common';
 import { GovService } from './gov.service';
 
 @Module({
-  imports: [
-    HttpModule.register({
-      timeout: 15000,
-      maxRedirects: 5,
-    }),
-  ],
-  providers: [GovService],
-  exports: [HttpModule],
+	imports: [
+		HttpModule.register({
+			timeout: 15000,
+			maxRedirects: 5,
+		}),
+	],
+	providers: [GovService],
+	exports: [HttpModule],
 })
 export class GovModule {}
