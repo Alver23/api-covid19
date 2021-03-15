@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [2.10.1](https://github.com/Alver23/api-covid19/compare/v2.10.0...v2.10.1) (2021-03-15)
+
+
+### Bug Fixes
+
+* fixed bug SQL filter to APP GOV ([b3559cc](https://github.com/Alver23/api-covid19/commit/b3559cc8daa51a2138ddefb84bb8a9f29c3a4c4c))
+
 ## [2.10.0](https://github.com/Alver23/api-covid19/compare/v2.9.0...v2.10.0) (2020-05-09)
 
 
