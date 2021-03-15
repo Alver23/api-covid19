@@ -27,8 +27,8 @@ export namespace GovNamespace {
 	}
 
 	export enum FIELD_TYPES {
-		CITY = 'ciudad_de_ubicaci_n',
-		STATE = 'departamento',
+		CITY = 'ciudad_municipio_nom',
+		STATE = 'departamento_nom',
 		AGE = 'edad',
 		GENDER = 'sexo',
 	}

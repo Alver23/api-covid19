@@ -39,7 +39,7 @@ export class CovidService {
 	public getTotalCasesByAttention(attention: string) {
 		const queryString = uriParser([
 			{ name: '$select', value: 'COUNT(*) as total' },
-			{ name: '$where', value: `atenci_n in(${attention})` },
+			{ name: '$where', value: `recuperado in(${attention})` },
 		]);
 
 		return this.govService.search(queryString).pipe(map(data => data[0].total));
@@ -49,7 +49,7 @@ export class CovidService {
 		const queryString = uriParser([
 			{ name: '$select', value: `${field} as name,COUNT(*) as total` },
 			{ name: '$group', value: field },
-			{ name: '$where', value: `atenci_n in('${value}')` },
+			{ name: '$where', value: `recuperado in('${value}')` },
 			{ name: '$order', value: 'total DESC' },
 		]);
 
@@ -175,8 +175,8 @@ export class CovidService {
 
 	public getCasesSummary(field: string, value: string): Observable<CovidResponseSummary> {
 		const fieldValue = field.toUpperCase();
-		const attentionRecovered = `and atenci_n in('${ATTENTION_TYPES.RECOVERED}')`;
-		const attentionDeath = `and atenci_n in('${ATTENTION_TYPES.DEATHS}')`;
+		const attentionRecovered = `and recuperado in('${ATTENTION_TYPES.RECOVERED}')`;
+		const attentionDeath = `and recuperado in('${ATTENTION_TYPES.DEATHS}')`;
 		return new Observable<CovidResponseSummary>((observer: Observer<CovidResponseSummary>) => {
 			combineLatest(
 				this.getCasesByGender({ field: fieldValue, value, attentionRecovered, attentionDeath }),
